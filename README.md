@@ -416,5 +416,15 @@ add()메소드
 - void add(Componenet comp, int index)
   - comp 컴포넌트를 index 위치에 삽입한다.
   - index : 컴포넌트의 위치  
-  동:BorderLayout.EAST, 서:BorderLayout.WEST, 남:borderLayout.SOUTH, 북:BorderLayout.NORTH, 중앙:BorderLayout.CENTER  
+  동:BorderLayout.EAST, 서:BorderLayout.WEST, 남:borderLayout.SOUTH, 북:BorderLayout.NORTH, 중앙:BorderLayout.CENTER
+
+컴포넌트의 절대 위치와 크기 설정  
+배치 관리자가 없는 컨테이너에 컴포넌트를 삽입할 때
+- 프로그램에서 컴포넌트의 절대 크기와 위치 설정
+- 컴포넌트들이 서로 겹치게 할 수 있음
+
+컴포넌트의 크기와 위치 설정 메소드
+- void setSize(int width, int height) // 컴포넌트 크기 설정
+- void setLocation(int x, int y) // 컴포넌트 위치 설정
+- void setBounds(int x, int y, int width, int height) // 위치와 크기 동시 설정
 
