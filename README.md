@@ -375,4 +375,46 @@ HashMap<K, V>
 - 다른 컨테이너에 포함되지 않고도 화면에 출력되며 독립적으로 존재 가능한 컨테이너
   - 스스로 화면에 자신을 출력하는 컨테이너 : JFrame, JDialog, JApplet
 
+
+## 05월 17일
+배치 관리자 대표 유형 4가지  
+FlowLayout 배치관리자  
+- 컴포넌트가 삽입되는 순서대로 왼쪽에서 오른쪽으로 배치  
+- 배치할 공간이 없으면 아래로 내려와서 반복한다. 
+   
+BorderLayout 배치관리자  
+- 컨테이너의 공간을 동, 서, 남, 북, 중앙의 5개 영역으로 나눔
   
+GridLayout 배치관리자  
+- 컨테이너를 프로그램에서 설정한 동일한 크기의 2차원 격자로 나눔
+- 컴포넌트는 삽입 순서대로 좌에서 우로, 다시 위에서 아래로 배치
+  
+CardLayout  
+- 컨테이너의 공간에 카드를 쌓아놓은 듯이 컴포넌트를 포개어 배치
+
+
+스윙 응용프로그램의 종료
+응용프로그램 내에서 스스로 종료하는 방법  
+System.exit(0);  
+언제 어디서나 무조건 종료  
+  
+프레임의 오른쪽 상단의 종료버튼(X)이 클릭되면 어떤 일이 일어나는가?  
+프레임 종료, 프레임 윈도우를 닫음(프레임이 화면에서 보이지 않게 됨)  
+프레임이 보이지 않게 되지만 응용프로그램이 종료한 것은 아님(키보드나 마우스 입력을 받지 못함, 다시 setVisible(true))를 호출하면, 보이게 되고 이전 처럼 작동함  
+
+프레임 종료버튼이 클릭될 때, 프레임과 함께 프로그램을 종료시키는 방법  
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
+  
+BorderLayout 생성자와 add()메소드  
+생성자  
+- BorderLayout()
+- BorderLayout(int hGap, int yGap)  
+  - hGap(좌우 두 컴포텉트 사이의 수평 간격, 픽셀 단위, 디폴트:0)
+  - yGap(상하 두 컴포넌트 사이의 수직 간격, 픽셀 단위, 디폴트:0)  
+    
+add()메소드  
+- void add(Componenet comp, int index)
+  - comp 컴포넌트를 index 위치에 삽입한다.
+  - index : 컴포넌트의 위치  
+  동:BorderLayout.EAST, 서:BorderLayout.WEST, 남:borderLayout.SOUTH, 북:BorderLayout.NORTH, 중앙:BorderLayout.CENTER  
+
