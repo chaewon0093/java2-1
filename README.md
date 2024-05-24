@@ -579,3 +579,14 @@ KeyListener
   - 모든 키에 대한 정수형 키 코드 리턴
   - 입력된 키를 판별하기 위해 가상키(Virtual) 값과 비교해야 함
   - 가상 키 값은 KeyEvent 클래스에 상수로 선언
+
+
+마우스 리스너 달기와 MouseEvent 객체 활용
+- 마우스 리스너 달기
+  - 마우스 리스너는 컴포넌트에 다음과 같이 등록(conponent.addMouseListener(myMouseListener);)
+  - 컴포넌트가 마우스 무브(mouseMoved())나 마우스 드래깅(mouseDragged())을 함께 처리하고자 하면, MouseMotion 리스너 따로 등록(component.addMouseMotionListener(myMouseMotionListener);)
+- MouseEvent 객체 활용
+  - 마우스 포인터의 위치, 컴포넌트 내 상대 위치
+    - int getX(), int getY()
+  - 마우스 클릭 횟수
+    - int getClickCount()
