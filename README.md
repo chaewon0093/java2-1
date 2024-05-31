@@ -590,3 +590,230 @@ KeyListener
     - int getX(), int getY()
   - 마우스 클릭 횟수
     - int getClickCount()
+
+## 05월 31일
+자바의 GUI 프로그래밍 방법  
+- 자바의 GUI 프로그래밍 방법 2 종류
+  - 컴포넌트 기반 GUI 프로그래밍
+    - 스윙 컴포넌트를 이용하여 쉽게 GUI를 구축
+    - 자바에서 제공하는 컴포넌트의 한계를 벗어나지 못함
+  - 그래픽 기반 GUI 프로그래밍
+    - 그래픽을 이용하여 GUI 구축
+    - 개발자가 직접 그래픽으로 화면을 구성하는 부담
+    - 독특한 GUI를 구성할 수 있는 장점
+    - GUI처리의 실행 속도가 빨라, 게임 등에 주로 이용
+
+스윙 컴포넌트의 공통 메소드, JComponent의 메소드  
+- JComponent
+  - 스윙 컴포넌트는 모두 상속받는 슈퍼 클래스, 추상 클래스
+  - 스윙 컴포넌트들이 상속받는 공통 메소드와 상수 구현
+  - JComponent의 주요 메소드 사례
+        
+
+컴포넌트의 모양과 관련된 메소드  
+void setForeground(Color) 전경색 설정  
+void setBackground(Color) 배경색 설정  
+void setOpaque(boolean) 불투명성 설정  
+void setFont(Font) 폰트 설정  
+Font getFont() 폰트 리턴  
+
+컴포넌트의 상태와 관련된 메소드
+void setEnabled(boolean) 컴포넌트 활성화/비활성화
+void set Visible(boolean) 컴포넌트 보이기/숨기기
+boolean isvisible() 컴포넌트의 보이는 상태 리턴  
+  
+컴포넌트의 위치와 크기에 관련된 메소드
+int getWidth() 폭 리턴  
+int getHeight() 높이 리턴  
+int getX() x 좌표 리턴  
+int getY() y 좌표 리턴  
+Point getLocationOnScreen() 스크린 좌표상의 컴포넌트 좌표  
+void setLocation(int, int) 위치 지정  
+void setSize(int, int) 크기 지정
+  
+컨테이너를 위한 메소드  
+Component add(Component) 자식 컴포넌트 추가  
+void remove(Component) 자식 컴포넌트 제거  
+void removeALL() 모든 자식 컴포넌트 제거  
+Component[] getComponents() 자식 컴포넌트 배열 리턴  
+Container getParent() 부모 컨테이너 리턴  
+Container getTopLeveLAncestor() 최상위 부모 컨테이너 리턴  
+  
+JLabel로 문자열과 이미지 출력  
+- JLabel의 용도  
+  - 문자열이나 이미지를 화면에 출력하기 위한 목적  
+- 레이블 생성 
+JLabel() 빈 레이블  
+JLabel(Icon image) 이미지 레이블  
+JLabel(String text) 문자열 레이블  
+JLabel(String text, ICon image, int hAlign) 문자열과 이미지 모두 가진 레이블   
+.hAlign : 수평 정렬 값으로 ScingConstants.LEFT, SwingConstants.RIGHT,SwingConstants.CENTER 중 하나  
+
+레이블 생성 예  
+- 문자열 레이블 생성  
+JLabel textLabel = new JLabel("사랑합니다");  
+  
+- 이미지 레이블 생성  
+  - 이미지 파일로부터 이미지를 읽기 위해 ImageIcon 클래스 사용  
+  - 다룰 수 있는 이미지 : png, gif, jpg  
+    - sunset.jpg의 경로명이 "images/sunset.jpg"인 경우  
+    ImageIcon image = new ImageIcon(images/suset.jpg");  
+    JLabel imageLabel = new JLabel(image);  
+  
+  - 수평 정렬 값을 가진 레이블 컴포넌트 생성  
+    - 수평 정렬로, 문자열과 이미지를 모두 가진 레이블  
+    ImageIcon image = new ImageIcon("images/sunset.jpg");
+    JLabel label = new JLabel("사랑합니다", image, SwingConstants.CENTER);  
+  
+  
+이미지 버튼 만들기  
+- 하나의 버튼에 3개의 이미지 등록
+  - 마우스 조작에 따라 3개의 이미지 중 적절한 이미지 자동 출력  
+- 3개의 버튼 이미지  
+  - normalIcon  
+    - 버튼의 보통 상태(디폴트) 때 출력되는 이미지  
+    - 생성자에 이미지 아이콘 전달 혹은 JButton의 setIcon(normalIcon);  
+  - rolloverIcon  
+    - 버튼에 마우스가 올라갈 때 출력되는 이미지  
+    - 이미지 설정 메소드 : JButton의 setRolloverIcon(rollOverIcon);  
+  - pressdIcon  
+    - 버튼을 누른 상태 때 출력되는 이미지   
+    - 이미지 설정 메소드 : JButton의 setPressedIcon(pressedIcon)  
+
+
+체크박스에 Item 이벤트 처리
+- Item 이벤트  
+  - 체크 박스의 선택 상태에 따라 변화가 생길 때 발생하는 이벤트  
+    - 사용자가 마우스나 키보드를 선택/해제할 때  
+    - 프로그램에서 체크박스를 선택/해제하여 체크 상태에 변화가 생길 때  
+    JCheckBox c = new JCheckBox("사과");
+    c.setSelect(true); // 선택 상태로 변경  
+    - 이벤트가 발생하면 ItemEvent 객체 생성
+    - ItemListener 리스너를 이용하여 이벤트 처리
+- ItemListener 리스너의 추상 메소드  
+void itemStateChanged(ItemEvent e) 체크박스의 선택 상태가 변하는 경우 호출   
+- ItemEvent의 주요 메소드   
+it getStateChange() 체크박스가 선택된 경우 ItemEvent.SELECTD를, 해제된 경우 ItemEvent.DESELECTED를 리턴한다.  
+Object getItem() 이벤트를 발생시킨 아이템 객체를 리턴한다. 체크박스의 경우 JCheckBox 컴포넌트의 레퍼런스를 리턴한다.  
+
+JRadioButton으로 라디오버튼 만들기  
+JRadioButton의 용도  
+- 버튼 그룹을 형성하고, 그룹에 속한 버튼 중 하나만 선택되는 라디오버튼  
+- 체크박스와의 차이점  
+  - 체크 박스는 각각 선택/ 해체가 가능하지만, 라디오버튼은 그룹에 속한 버튼 중 하나만 선택  
+  
+라디오버튼 생성  
+JRadioButton() 빈 라디오버튼  
+JRadioButton(Icon image) 이미지 라디오버튼  
+JRadioButton(Icon image, boolean selected) 이미지 라디오버튼  
+JRadioButton(String text) 문자열 라디오버튼  
+JRadioButton(String text, boolean selected) 문자열 라디오버튼  
+JRadioButton(String text, Icon image) 문자열과 이미지를 가진 라디오버튼  
+JRadioButton(Sting text, Icon image, boolean selected) 문자열과 이미지를 가진 라디오버튼  
+.selected:true면 선택 상태로 초기화  
+
+  
+라디오버튼 생성 및 Item 이벤트 처리  
+- 버튼 그룹과 라디오버튼 생성 과정  
+1. 버튼 그룹 객체 생성  
+ButtonGroup group = new ButtonGroup();  
+2. 라디오버튼 생성  
+JRadioButton apple = new JRadioButton("사과");  
+JRadioButton pear = new JRadioButton("배");  
+JRadioButton cherry = new JRadioButton("체리")
+3. 라디오버튼을 버튼 그룹에 삽입  
+group.add(apple);  
+container.add(pear);  
+container.add(cherry);  
+  
+- 라디오버튼에 Item 이벤트 처리 : ItemListener 리스너 이용  
+  - 라디오버튼이 선택/해제되어 상태가 달라지면, item 이벤트 발생  
+    - 사용자가 마우스나 키보드로 선택 상태를 변경할 때  
+    - 프로그램에서 JRadioButton이 setSelected()를 호출하여 선택 상태를 변경할 때  
+
+  
+JTextField로 한 줄 입력 창 만들기  
+- JTextField  
+  - 한 줄의 문자열을 입력 받는 창(텍스트필드)  
+     - 텍스트 입력 도중 <Enter> 키가 입력되면 Action 이벤트 발생
+     - 입력 가능한 문자 개수와 입력 창의 크기는 서로 다름  
+  - 텍스트필드 생성  
+  JTextField() 빈 텍스트필드  
+  JTextField(int cols) 입력 창의 열의 개수가 cols개인 텍스트필드  
+  JTextField(String text) text 문자열로 초기화된 텍스트필드  
+  JTextFiels(String text, int cols) 입력 창의 열의 개수는 cols개이고 text 문자열로 초기화 된 텍스트필드  
+  - "컴퓨터공학과"로 초깃값을 가지는 텍스트필드 생성 예  
+  JTextField tf2 = new JTextField("컴퓨터공학과");  
+
+  
+텍스트영역 생성 예  
+"hello" 문자열의 초깃값을 가지고, 한 줄에 20개의 문자가 입력 가능하며, 7줄로 구성된 텍스트 영역 만들기  
+JTextArea ta = new JTextArea("hello", 7, 20);  
+container.add(ta);  
+왼쪽에 만든 텍스트영역에 스크롤바 붙이기  
+JTextArea ta = new JTextArea("hello", 7, 20);  
+container.add(new JScrollPane(ta));  
+
+JComboBox<E>  
+- JComboBox<E>  
+  - 텍스트필드와 버튼, 그리고 드롭다운 리스트로 구성되는 콤보박스  
+  - 드롭다운 리스트에서 선택한 것이 텍스트필드에 나타남  
+- 콤보박스 생성  
+JComboBox<E>()빈 콤보박스  
+JComboBox<E>(Vector listData) 벡터로부터 아이템을 공급받는 콤보박스
+JComboBox<E>(Object [] ListData) 배열로부터 아이템을 공급받는 콤보박스  
+예) 텍스트를 아이템으로 가진 콤보박스 생성  
+String [] fruits = {"apple", "banana", "kiwi", "mango", "pear" ,"peach", "berry", "strawberry", "blackberry"};  
+JComboBox<String> combo = new JComboBox<String>(fruits);  
+
+메뉴 구성  
+- 메뉴 만들기에 필요한 스윙 컴포넌트
+  - 메뉴아이템 - JMenuItem  
+  - 메뉴 - JMenu  
+    - 여러 개의 메뉴 아이템을 가짐  
+  - 메뉴바 - JMenuBar  
+    - 여러 개의 메뉴를 붙이는 바이며 프레임에 부착됨  
+  - 분리선  
+    - 메뉴아이템 사이의 분리선으로 separator라고 부름  
+    - JMenu의 addSeparator()를 호출하여 삽입함  
+  
+메뉴아이템에 Action 이벤트 달기  
+- 메뉴아이템을 클릭하면 Action 발생  
+  - 메뉴아이템은 사용자로부터의 지시나 명령을 받는데 사용  
+  - ActionListener 인터페이스로 리스너 작성
+  - 각 메뉴아이템마다 이벤트 리스너 설정  
+
+예) Load 메뉴아이템에 Action 리스너를 작성하는 경우  
+JMenuItem item = new JMenuItem("Load");  
+item.addActionListener(new MenuActionListener()); // 메뉴아이템에 Action 리스너 설정  
+screenMenu.add(item);  
+
+class.MenuActionListener implements ActionListener {
+  public void actionPerformed(ActionEvent e) {
+    // 사용자가 Load 메뉴아이템을 선택하는 경우 처리할 작업 구현  
+    ...
+  }
+}  
+
+
+팝업 다이얼로그, JOptionPane  
+- 팝업 다이얼로그  
+  - 사용자에게 메시지를 전달하거나 문자열을 간단히 입력받는 용도  
+  - JOptionPane 클래스를 이용하여 생성  
+    - static 타입의 간단한 메소드 이용  
+  - 입력 다이얼로그 - JOptionPane.showInputDialog()  
+    - 한 줄을 입력 받는 다이얼로그  
+    static String JOptionPane.showInputDialog(String msg)  
+    . msg : 다이얼로그 메시지  
+    . 리턴 값 : 사용자가 입력한 문자열, 취고 버튼이 선택되거나 창이 닫히면 null 리턴  
+      
+
+확인 다이얼로그  
+- 확인 다이얼로그 - JOptionPane.showConfirmDialog()  
+  - 사용자로부터 Yes/No 응답을 입력 받는 다이얼로그  
+static int JOptionPane.showConfirmDialog(component parentCompoenet, Object msg, String title, int optionType)  
+. ParentComponent : 다이얼로그의 부모 컴포넌트로서 다이얼로그가 출력되는 영역의 범위 지정을 위해 사용(예 : 프레임) .null이면 전체 화면 중앙에 출력  
+. msg : 다이얼로그 메시지  
+. title : 다이얼로그 타이틀  
+. optionType : 다이얼로그 옵션 종류 지정(YES_NO_OPTION, YESNO CANCEL_OPTION, OK_CANCEL_OPTION)  
+. 리턴 값 : 사용자가 선택한 옵션 종류(YES_OPTION, NO_OPTION, CANCEL_OPTION, CLOSED_OPTION)  
